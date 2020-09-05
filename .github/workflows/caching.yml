@@ -16,11 +16,11 @@ jobs:
         key: cache-${{ github.run_id }}
         restore-keys: cache-
     - run: |
-              mkdir -p cache
-              [ -e  cache/foo.txt ] || echo "0" > cache/foo.txt
+              mkdir -p cacheFolder
+              [ -e  cacheFolder/foo.txt ] || echo "0" > cacheFolder/foo.txt
     - run: |
-              value=$(cat cache/foo.txt)
+              value=$(cat cacheFolder/foo.txt)
               next_value=$((value + 1))
               echo "value: $value -> $next_value"
-              echo "$next_value" > cache/foo.txt
+              echo "$next_value" > cacheFolder/foo.txt
                
