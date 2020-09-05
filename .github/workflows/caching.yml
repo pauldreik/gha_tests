@@ -15,8 +15,9 @@ jobs:
         path: cacheFolder
         key: cache-${{ github.run_id }}
         restore-keys: cache-
-    - if: steps.cache-test.outputs.cache-hit != 'true'
-      run: mkdir cache && echo "0" > cache/foo.txt
+    - run: |
+              mkdir -p cache
+              [ -e  cache/foo.txt ] || echo "0" > cache/foo.txt
     - run: |
               value=$(cat cache/foo.txt)
               next_value=$((value + 1))
