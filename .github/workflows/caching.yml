@@ -1,0 +1,25 @@
+name: caching
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test_cache:
+    runs-on: ubuntu-latest    
+    steps:       
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      id: cache-test
+      with:
+        path: cacheFolder
+        key: cache-${{ github.run_id }}
+        restore-keys: cache-
+    - if: steps.cache-test.outputs.cache-hit != 'true'
+      run: mkdir cache && echo "0" > cache/foo.txt
+    - run: |
+              value=$(cat cache/foo.txt)
+              next_value=$((value + 1))
+              echo "value: $value -> $next_value"
+              echo "$next_value" > cache/foo.txt
+               
