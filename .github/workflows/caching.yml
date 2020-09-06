@@ -17,7 +17,8 @@ jobs:
       with:
         path: cacheFolder
 #        key: cache-${{ github.run_id }}-${{ hashFiles('/proc/self/stat') }}
-        key: cache-${{ github.run_id }}-${{ hashFiles('.git/logs/HEAD') }}
+#        key: cache-${{ github.run_id }}-${{ hashFiles('.git/logs/HEAD') }}
+        key: cache-${{ env.INVOCATION_ID }}-${{ env.RUNNER_TRACKING_ID }}
         restore-keys: cache-
     - run: |
               echo RANDA= ${{ env.RANDA }} $RANDA
