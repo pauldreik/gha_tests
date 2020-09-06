@@ -16,7 +16,8 @@ jobs:
       id: cache-test
       with:
         path: cacheFolder
-        key: cache-${{ github.run_id }}-${{ hashFiles('/proc/self/stat') }}
+#        key: cache-${{ github.run_id }}-${{ hashFiles('/proc/self/stat') }}
+        key: cache-${{ github.run_id }}-${{ hashFiles('.git/logs/HEAD') }}
         restore-keys: cache-
     - run: |
               echo RANDA= ${{ env.RANDA }} $RANDA
@@ -26,6 +27,9 @@ jobs:
               echo github.run_id ${{ github.run_id }}
               echo github.run_number ${{ github.run_number }}
               echo runner.temp ${{ runner.temp }}
+              echo github.ref ${{ github.ref }}
+              echo github.head_ref ${{ github.head_ref }}
+              echo github.base_ref ${{ github.base_ref }}
     - run: |
               mkdir -p cacheFolder
               [ -e  cacheFolder/foo.txt ] || echo "0" > cacheFolder/foo.txt
