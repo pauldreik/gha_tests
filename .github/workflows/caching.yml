@@ -32,6 +32,9 @@ jobs:
               echo github.ref ${{ github.ref }}
               echo github.head_ref ${{ github.head_ref }}
               echo github.base_ref ${{ github.base_ref }}
+              mkdir -p fuzzing
+              touch fuzzing/crash-123
+              false
     - run: env
     - run: |
               mkdir -p cacheFolder
