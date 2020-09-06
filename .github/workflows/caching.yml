@@ -22,6 +22,7 @@ jobs:
               echo RANDA= ${{ env.RANDA }} $RANDA
               echo RANDOM= $RANDOM
               echo job.container.id ${{ job.container.id }}
+              echo job.container.network ${{ job.container.network }}
               echo github.run_id ${{ github.run_id }}
               echo github.run_number ${{ github.run_number }}
     - run: |
