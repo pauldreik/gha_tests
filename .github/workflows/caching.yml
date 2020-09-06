@@ -41,4 +41,12 @@ jobs:
               next_value=$((value + 1))
               echo "value: $value -> $next_value"
               echo "$next_value" > cacheFolder/foo.txt
-               
+    - uses: actions/upload-artifact@v2
+      if: failure()
+      with:
+        name: crashes
+        path: |
+          fuzzing/crash-*
+          fuzzing/leak-*
+          fuzzing/timeout-*
+        if-no-files-found: ignore
