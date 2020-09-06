@@ -1,5 +1,8 @@
 name: caching
 
+env:
+  RANDA: $RANDOM
+
 on:
   push:
   pull_request:
@@ -15,6 +18,12 @@ jobs:
         path: cacheFolder
         key: cache-${{ github.run_id }}
         restore-keys: cache-
+    - run: |
+              echo RANDA= ${{ env.RANDA }} $RANDA
+              echo RANDOM= $RANDOM
+              echo job.container.id ${{ job.container.id }}
+              echo github.run_id ${{ github.run_id }}
+              echo github.run_number ${{ github.run_number }}
     - run: |
               mkdir -p cacheFolder
               [ -e  cacheFolder/foo.txt ] || echo "0" > cacheFolder/foo.txt
