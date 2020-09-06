@@ -42,7 +42,7 @@ jobs:
               echo "value: $value -> $next_value"
               echo "$next_value" > cacheFolder/foo.txt
     - uses: actions/upload-artifact@v2
-      if: failure()
+      if: always()
       with:
         name: crashes
         path: |
