@@ -19,7 +19,7 @@ jobs:
 #        key: cache-${{ github.run_id }}-${{ hashFiles('/proc/self/stat') }}
 #        key: cache-${{ github.run_id }}-${{ hashFiles('.git/logs/HEAD') }}
 #        key: cache-${{ env.INVOCATION_ID }}-${{ env.RUNNER_TRACKING_ID }}
-        key: cache-${{ hashFiles('dev_random') }}
+        key: cache-${{ hashFiles('proc_self_stat') }}
         restore-keys: cache-
     - run: |
               echo RANDA= ${{ env.RANDA }} $RANDA
