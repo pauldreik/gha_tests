@@ -32,6 +32,7 @@ jobs:
               echo github.ref ${{ github.ref }}
               echo github.head_ref ${{ github.head_ref }}
               echo github.base_ref ${{ github.base_ref }}
+              touch normalfile
               mkdir -p fuzzing
               touch fuzzing/crash-123
               false
@@ -44,6 +45,11 @@ jobs:
               next_value=$((value + 1))
               echo "value: $value -> $next_value"
               echo "$next_value" > cacheFolder/foo.txt
+    - uses: actions/upload-artifact@v2
+      if: success()
+      with:
+        name: normalfile
+        path: normalfile
     - uses: actions/upload-artifact@v2
       if: always()
       with:
