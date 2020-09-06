@@ -34,8 +34,7 @@ jobs:
               echo github.base_ref ${{ github.base_ref }}
               touch normalfile
               mkdir -p fuzzing
-              touch fuzzing/crash-123
-              false
+              #touch fuzzing/crash-123              
     - run: env
     - run: |
               mkdir -p cacheFolder
